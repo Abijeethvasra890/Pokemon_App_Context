@@ -33,7 +33,7 @@ function App() {
 
   const handleExpenseItem = (e) => {
     e.preventDefault();
-    console.log(expense,amount,date);
+    //console.log(expense,amount,date);
     addExpense(expense,amount,date);
   }
 
