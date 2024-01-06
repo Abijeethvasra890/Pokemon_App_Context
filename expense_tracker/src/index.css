@@ -93,7 +93,6 @@ footer {
 .box{
   padding: 5px;
   margin: 10px;
-  border: 1px solid violet;
 }
 
 .box:nth-child(2){
@@ -116,4 +115,13 @@ footer {
   height: 75px;
   background-color: darkgray;
   justify-content: space-around;
+}
+
+.filteryear{
+  display: flex;
+  justify-content:flex-end;
+}
+
+.fylabel{
+  color: white;
 }

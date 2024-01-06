@@ -4,15 +4,22 @@ import Footer from './Footer';
 import Content from './Content';
 import AddExpense from './AddExpense';
 import { useState } from 'react';
+import FilterYear from './FilterYear';
+import Graph from './Graph';
 
 
 function App() {
   const [expense, setExpense] = useState([]);
-  const [amount, setAmount] = useState([]);
-  const [date, setDate] = useState([]);
- // const [total,setTotal] =useState([]);
-  const [items, setItems] = useState(JSON.parse(localStorage.getItem('expense_list')));
+  const [amount, setAmount] = useState('');
+  const [date, setDate] = useState('');
+  const [total,setTotal] =useState();
+  const [year,setYear] = useState('');
+  const [items, setItems] = useState(()=>{
+    const storedItems = localStorage.getItem('expense_list')
+    return storedItems ? JSON.parse(storedItems) : [];
+  });
 
+  //example of item obj used to store the data
   /*items = []
     {
       id:1,
@@ -22,6 +29,7 @@ function App() {
    }
   ]*/
 
+  //this function Adds the new expense to the items State
   const addExpense = (expense,amount,date) =>{
     const id = items.length ? items[items.length - 1].id + 1 : 1;
     const addExpenseItem = {id: id, date:date, expense: expense, price: amount}
@@ -30,13 +38,28 @@ function App() {
     localStorage.setItem('expense_list', JSON.stringify(listExpense));
   }
 
-
+  //this function handles the Calling of the AddExpense func
   const handleExpenseItem = (e) => {
     e.preventDefault();
-    //console.log(expense,amount,date);
     addExpense(expense,amount,date);
   }
 
+  //this function handles the year selected and sets it to state
+  const handleDropdown = (e) => {
+    setYear(e.target.value);
+  }
+
+  //this snippet is used to filter the expenses based on the year selected
+ const filteredExpenses = year !== "all" ? items.filter((item)=>  
+  new Date(item.date).getFullYear().toString() === year): items;
+  
+  //this function is used to delete the expenses from the State
+  const handleDelete = (id) => {
+    const listItems = items.filter((item)=>(item.id !== id))
+    setItems(listItems)   
+    
+  }
+  
   return (
     <div>
       <Header />
@@ -49,8 +72,10 @@ function App() {
         setDate = {setDate}
         handleExpenseItem={handleExpenseItem} 
         />
-      <Content items={items}/>
-      <Footer />
+      <Graph filteredExpenses={filteredExpenses} setTotal={setTotal} />  
+      <FilterYear year={year} handleDropdown={handleDropdown} />
+      <Content items={filteredExpenses} handleDelete={handleDelete}/>
+      <Footer year={year} total = {total}/>
     </div>
   );
 }
