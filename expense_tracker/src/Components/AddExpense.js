@@ -1,6 +1,8 @@
 import React from 'react';
 
 const AddExpense = ({ expense, amount, date, setExpense, setAmount, setDate, handleExpenseItem }) => {
+  const today = new Date().toISOString().split('T')[0];
+  
   return (
     <div className="form-container">
       <form className="expense-form" onSubmit={handleExpenseItem}>
@@ -35,7 +37,7 @@ const AddExpense = ({ expense, amount, date, setExpense, setAmount, setDate, han
             id="addDate"
             placeholder='Add Expense Date'
             type='date'
-            value={date}
+            value={date || today}
             required
             onChange={(e) => setDate(e.target.value)}
           />

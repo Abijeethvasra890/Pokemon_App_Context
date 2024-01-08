@@ -11,7 +11,7 @@ function App() {
   const [expense, setExpense] = useState([]);
   const [amount, setAmount] = useState('');
   const [date, setDate] = useState('');
-  const [year,setYear] = useState('');
+  const [year,setYear] = useState('2024');
   const [items, setItems] = useState(()=>{
     const storedItems = localStorage.getItem('expense_list')
     return storedItems ? JSON.parse(storedItems) : [];
@@ -34,7 +34,12 @@ function App() {
     const listExpense = [...items, addExpenseItem];
     setItems(listExpense);
     localStorage.setItem('expense_list', JSON.stringify(listExpense));
+    alert("Expense Added");
+    setExpense('');
+    setAmount('');
+    setDate('');
   }
+   
 
   //this function handles the Calling of the AddExpense func
   const handleExpenseItem = (e) => {
@@ -71,6 +76,7 @@ function App() {
         setDate = {setDate}
         handleExpenseItem={handleExpenseItem} 
         />
+        
       <Graph filteredExpenses={filteredExpenses}/>  
       <FilterYear year={year} handleDropdown={handleDropdown} />
       <Content items={filteredExpenses} handleDelete={handleDelete}/>

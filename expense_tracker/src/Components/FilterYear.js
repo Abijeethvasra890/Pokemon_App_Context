@@ -5,7 +5,7 @@ const FilterYear = ({year, handleDropdown}) => {
     <div className='filteryear'>
         <div className='tablename'><b>Expense Table</b></div>
         <div className='fylabel'><b>Filter by Year: </b>
-        <select name="years" id="years" value={year} onChange={handleDropdown}>
+        <select name="years" id="years" onChange={handleDropdown} defaultValue="2024">
             <option value="all">Select Year</option>
             <option value="2021">2021</option>
             <option value="2022">2022</option>

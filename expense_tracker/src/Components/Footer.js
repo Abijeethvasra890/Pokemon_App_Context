@@ -6,7 +6,7 @@ const Footer = ({year}) => {
   const total =  JSON.parse(temp);
   return (
     <footer>
-      <span>The Total Expense for selected year {year} is {total}</span>
+      <span>The Total Expense for selected year {year} is {total} INR</span>
         <p>Copyright &copy; {curryear.getFullYear()}</p>
        
     </footer>

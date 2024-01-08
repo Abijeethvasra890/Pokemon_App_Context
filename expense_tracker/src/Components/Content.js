@@ -9,7 +9,7 @@ const Content = ({ items, handleDelete }) => {
             <tr>
               <th>Date</th>
               <th>Expense</th>
-              <th>Price</th>
+              <th>Price(INR)</th>
               <th>Action</th>
             </tr>
           </thead>
