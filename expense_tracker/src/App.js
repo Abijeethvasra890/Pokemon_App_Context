@@ -1,10 +1,10 @@
-import Header from './Header';
-import Footer from './Footer';
-import Content from './Content';
-import AddExpense from './AddExpense';
+import Header from './Components/Header';
+import Footer from './Components/Footer';
+import Content from './Components/Content';
+import AddExpense from './Components/AddExpense';
 import { useState } from 'react';
-import FilterYear from './FilterYear';
-import Graph from './Graph';
+import FilterYear from './Components/FilterYear';
+import Graph from './Components/Graph';
 
 
 function App() {
@@ -16,8 +16,6 @@ function App() {
     const storedItems = localStorage.getItem('expense_list')
     return storedItems ? JSON.parse(storedItems) : [];
   });
-
-  
 
   //example of item obj used to store the data
   /*items = []
