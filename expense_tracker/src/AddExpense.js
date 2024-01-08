@@ -5,6 +5,7 @@ const AddExpense = ({ expense, amount, date, setExpense, setAmount, setDate, han
     <div className="form-container">
       <form className="expense-form" onSubmit={handleExpenseItem}>
         <div className="form-group">
+        <>
           <label htmlFor="addexpense">Expense:</label>
           <input
             id="addexpense"
@@ -14,9 +15,8 @@ const AddExpense = ({ expense, amount, date, setExpense, setAmount, setDate, han
             required
             onChange={(e) => setExpense(e.target.value)}
           />
-        </div>
-
-        <div className="form-group">
+          </>
+          <>
           <label htmlFor="addAmount">Amount:</label>
           <input
             id="addAmount"
@@ -26,6 +26,7 @@ const AddExpense = ({ expense, amount, date, setExpense, setAmount, setDate, han
             required
             onChange={(e) => setAmount(e.target.value)}
           />
+          </>
         </div>
 
         <div className="form-group">
@@ -38,9 +39,6 @@ const AddExpense = ({ expense, amount, date, setExpense, setAmount, setDate, han
             required
             onChange={(e) => setDate(e.target.value)}
           />
-        </div>
-
-        <div className="form-group">
           <button className='form-button' type="submit">Add Expense</button>
         </div>
       </form>

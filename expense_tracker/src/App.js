@@ -1,4 +1,3 @@
-import './App.css';
 import Header from './Header';
 import Footer from './Footer';
 import Content from './Content';
@@ -12,12 +11,13 @@ function App() {
   const [expense, setExpense] = useState([]);
   const [amount, setAmount] = useState('');
   const [date, setDate] = useState('');
-  const [total,setTotal] =useState();
   const [year,setYear] = useState('');
   const [items, setItems] = useState(()=>{
     const storedItems = localStorage.getItem('expense_list')
     return storedItems ? JSON.parse(storedItems) : [];
   });
+
+  
 
   //example of item obj used to store the data
   /*items = []
@@ -49,6 +49,7 @@ function App() {
     setYear(e.target.value);
   }
 
+
   //this snippet is used to filter the expenses based on the year selected
  const filteredExpenses = year !== "all" ? items.filter((item)=>  
   new Date(item.date).getFullYear().toString() === year): items;
@@ -59,7 +60,7 @@ function App() {
     setItems(listItems)   
     
   }
-  
+
   return (
     <div>
       <Header />
@@ -72,10 +73,10 @@ function App() {
         setDate = {setDate}
         handleExpenseItem={handleExpenseItem} 
         />
-      <Graph filteredExpenses={filteredExpenses} setTotal={setTotal} />  
+      <Graph filteredExpenses={filteredExpenses}/>  
       <FilterYear year={year} handleDropdown={handleDropdown} />
       <Content items={filteredExpenses} handleDelete={handleDelete}/>
-      <Footer year={year} total = {total}/>
+      <Footer year={year}/>
     </div>
   );
 }

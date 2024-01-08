@@ -1,11 +1,13 @@
 import React from 'react'
 
-const Footer = ({total,syear}) => {
-  const year = new Date();
+const Footer = ({year}) => {
+  const curryear = new Date();
+  const temp = localStorage.getItem('yearTotal')
+  const total =  JSON.parse(temp);
   return (
     <footer>
-      <span>The total Expense for selected year {syear} : {total}</span>
-        <p>Copyright &copy; {year.getFullYear()}</p>
+      <span>The Total Expense for selected year {year} is {total}</span>
+        <p>Copyright &copy; {curryear.getFullYear()}</p>
        
     </footer>
   )

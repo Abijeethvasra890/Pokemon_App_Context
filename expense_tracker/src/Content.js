@@ -1,21 +1,36 @@
-import React from 'react'
+import React from 'react';
 
-const Content = ({items, handleDelete}) => {
-  
+const Content = ({ items, handleDelete }) => {
   return (
     <main>
-        <ul className='object-list'>
-            {items ? items.map((item) => (
-                <li key = {item.id} className='container'>
-                    <div className='box'><p>{item.date}</p></div>
-                    <div className='box'><p>{item.expense}</p></div>
-                    <div className='box'><p>{item.price}</p></div>
-                    <div className='box'><button onClick={()=>handleDelete(item.id)}>Delete</button></div>
-                </li>
-            )):<p>"No Expense for the Selected Year"</p>}
-        </ul>
+      {items && items.length > 0 ? (
+        <table className='expense-table'>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Expense</th>
+              <th>Price</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {items.map((item) => (
+              <tr key={item.id}>
+                <td>{item.date}</td>
+                <td>{item.expense}</td>
+                <td>{item.price}</td>
+                <td>
+                  <button onClick={() => handleDelete(item.id)}>Delete</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      ) : (
+        <center><p>"No Expense for the Selected Year"</p></center>
+      )}
     </main>
-  )
-}
+  );
+};
 
-export default Content
+export default Content;

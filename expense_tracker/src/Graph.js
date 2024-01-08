@@ -3,16 +3,17 @@ import { Bar } from 'react-chartjs-2';
 import Chart from 'chart.js/auto'; 
 
 //this function is used to calculate the monthly total and render it as graph
-const Graph = ({filteredExpenses, setTotal}) => {
+const Graph = ({filteredExpenses, handleSetTotal}) => {
     const expensesByMonth = {};//this is used to store the monthly wise expenses as obj
-    let total = 0;
+    let yeartotal = 0;
     //this function is used to calculate the monthly total
     filteredExpenses.forEach((expense) => {
         const month = new Date(expense.date).getMonth() + 1; // Months are zero-based
-        expensesByMonth[month] = (expensesByMonth[month] || 0) + expense.price;
-        total += parseInt(expense.price);
+        expensesByMonth[month] = (expensesByMonth[month] || 0) + parseInt(expense.price);
+        yeartotal += parseInt(expense.price);
     });
-    setTotal(total);//this is used to set the Yearly total to State 
+   
+    localStorage.setItem('yearTotal', JSON.stringify(yeartotal));//set to localstorage to display it in footer
     //this func is used to set the Chart data
     const chartData = {
         labels: Array.from({ length: 12 }, (_, index) => index + 1), 
@@ -30,7 +31,9 @@ const Graph = ({filteredExpenses, setTotal}) => {
         maintainAspectRatio: false, // Set this to false to allow customization of width and height
       };
   return (
-    <div><Bar data={chartData} options={chartOptions} width={400} height={200} /></div>
+    <div className='graph-container'>
+        <Bar className='graph' data={chartData} options={chartOptions} width={400} height={200} />
+    </div>
   )
 }
 
