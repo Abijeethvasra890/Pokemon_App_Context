@@ -33,7 +33,7 @@ const Graph = ({filteredExpenses, handleSetTotal}) => {
   return (
     <div className='graph-container'>
         <Bar className='graph' data={chartData} options={chartOptions} width={400} height={200} />
-    </div>
+        </div>
   )
 }
 
